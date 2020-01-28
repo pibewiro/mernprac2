@@ -1,8 +1,10 @@
-const express = require("express")
-require("dotenv").config();
+
 
 module.exports = function()
 {
+    const express = require("express")
+require("dotenv").config();
+
     const app = express();
 
     if(process.env.NODE_ENV === "production")
