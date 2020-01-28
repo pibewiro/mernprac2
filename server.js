@@ -22,4 +22,13 @@ mongoose.connect(uri, {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopo
 const connection = mongoose.connection;
 connection.once('open', ()=>console.log("Connected to Database"))
 
+if(process.env.NODE_ENV === "production")
+{
+    app.use(express.static("frontend/build"))
+
+    app.get("*", (req,res)=>{
+        res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+    })
+}
+
 app.listen(port, ()=>console.log("Connected to Port:", port));
