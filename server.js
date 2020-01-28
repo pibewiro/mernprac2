@@ -1,10 +1,9 @@
 const express = require("express")
 const cors = require("cors")
-const mongoose = require("mongoose")
-require("dotenv").config();
 const userRoutes = require("./routes/user");
 const exerciseRoutes = require("./routes/exercise")
-
+const herokuConfig = require("./herokuConfig")
+const dbConnect = require("./dbConfig")
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -15,20 +14,7 @@ app.use(express.json())
 app.use("/users", userRoutes)
 app.use("/exercises", exerciseRoutes)
 
-
-//Database
-const uri = process.env.DB_URI;
-mongoose.connect(uri, {useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology: true});
-const connection = mongoose.connection;
-connection.once('open', ()=>console.log("Connected to Database"))
-
-if(process.env.NODE_ENV === "production")
-{
-    app.use(express.static("frontend/build"))
-
-    app.get("*", (req,res)=>{
-        res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-    })
-}
+dbConnect();
+herokuConfig();
 
 app.listen(port, ()=>console.log("Connected to Port:", port));

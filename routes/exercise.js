@@ -1,13 +1,7 @@
 const router = require("express").Router();
-const Exercise = require("../models/exercise.model");
+const {getExercises} = require("../controllers/exercise");
 
-router.get("/", (req,res)=>{
-    Exercise.find()
-    .then(exercise=>{
-        return res.status(200).json(exercise)
-    })
-    .catch(err=>console.log(err))
-})
+router.get("/", getExercises)
 
 router.get("/:id", (req,res)=>{
     Exercise.findOne(req.params.id)
