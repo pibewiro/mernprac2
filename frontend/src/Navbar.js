@@ -12,15 +12,15 @@ export default function Navbar() {
                     </li>
 
                     <li className="navbar-item">
-                        <Link to="/" className="nav-link">Exercise List</Link>
+                        <Link to="/create_exercise" className="nav-link">Create Exercise</Link>
                     </li>
 
                     <li className="navbar-item">
-                        <Link to="/" className="nav-link">Exercise List</Link>
+                        <Link to="/create_user" className="nav-link">Create User</Link>
                     </li>
 
                     <li className="navbar-item">
-                        <Link to="/" className="nav-link">Exercise List</Link>
+                        <Link to="/edit_exercise" className="nav-link">Edit Exercise</Link>
                     </li>
                 </ul>
             </div>
