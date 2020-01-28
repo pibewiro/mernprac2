@@ -1,3 +1,6 @@
+const express = require("express")
+const app = express();
+
 module.exports = function()
 {
     if(process.env.NODE_ENV === "production")
